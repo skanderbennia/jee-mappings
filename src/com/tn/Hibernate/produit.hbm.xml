@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tn.beans.Produit" table="produit">
+		<id name="idProduit" column="id_produit">
+			<generator class="increment" />
+		</id>
+		<property name="libelle" type="string" column="libelle" />
+
+		<set name="fournisseurs" table="produit_fournisseur"  cascade="save-update">
+			<key column ="idProduit" />
+			<many-to-many class="com.tn.beans.Fournisseur" column="idFournisseur" />
+		</set>
+		<set name="lignes" inverse="true">
+			<key column ="idProduit" />
+			<one-to-many class="com.tn.beans.LigneCommande" />
+		</set>
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	<hibernate-mapping package="com.tn.beans">
+<class name="LigneCommande" table="lignecommande">
+<composite-id class="LigneCommande$Id" name="Id">
+<key-property name="idCommande" access="field" column="idCommande" />
+<key-property name="idProduit" access="field" column="idProduit" />
+</composite-id>
+<property name="quantite" />
+<many-to-one name="commande" class="Commande"
+column="idCommande"
+not-null="true"
+insert="false"
+update="false"/>
+<many-to-one name="produit" class="Produit"
+column="idProduit"
+not-null="true"
+insert="false"
+update="false"/>
+
+</class>
+</hibernate-mapping>

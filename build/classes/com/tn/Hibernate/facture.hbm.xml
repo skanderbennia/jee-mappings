@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tn.beans.Facture" table="facture">
+		<id name="idFacture" column="id_facture">
+			<generator class="increment" />
+		</id>
+		<property name="montant" type="float" column="montant" />
+		
+			<joined-subclass
+name="com.tn.beans.FactureParCheque"
+table="FactureParCheque">
+<key column="idFactureCheque" />
+<property name="numero"/>
+</joined-subclass>
+<joined-subclass
+name="com.tn.beans.FactureParVirement"
+table="FactureParVirement">
+<key column="idFactureVirement" />
+<property name="rib" />
+</joined-subclass>
+</class>
+</hibernate-mapping>
